@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_forms_tags%}
+  <!-- ======= Property Search Section ======= -->
+ <!--
+
+  <div class="box-collapse">
+    <div class="title-box-d">
+      <h3 class="title-d">Look For Activity</h3>
+    </div>
+    <span class="close-box-collapse right-boxed bi bi-x"></span>
+    <div class="box-collapse-wrap form">
+      <form class="form-a" method="post" action="{% url 'index' %}">
+        {% csrf_token%}
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-1" >{{form.label}}</label>
+          {{form | crispy}}
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Find Me Activity</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+-->
+
+
+
+
+  <!-- ======= Property Search Section ======= -->
+ {% block content %}
+  <!--/ Form Search Star /-->
+<div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="text-center">
+    <div class="title-box-d">
+      <h3 class="title-d">Look For Activity</h3>
+    </div>
+    <div class="form">
+      <form class="form-a" method="post" action="{% url 'activity-form' %}">
+        {% csrf_token%}
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-1" >{{form.label}}</label>
+          {{form | crispy}}
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Find Me An Activity</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+    <div class="card mt-5">
+        <ul>
+        {% for key, value in activity.items%}
+    {% if key == "activity" or key == "type" or key == "participants" or key == "error" %}
+            <li>{{key}}: {{value}}</li>
+    {% endif %}
+            {%if key == "link"%}
+            <li>{{key}}: <a>{{value}}</a></li>
+            {%endif%}
+        {%endfor%}
+            </ul>
+
+    </div>
+</div>
+{% endblock content %}
